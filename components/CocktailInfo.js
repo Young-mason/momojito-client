@@ -7,6 +7,7 @@ import ButtonList from "./ButtonList";
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Container = styled.div`
   display: flex;
@@ -185,6 +186,10 @@ export default function CocktailInfo({ id }) {
   };
   return (
     <Container isLike={isLike}>
+      <Head>
+        <meta name="title" content={cocktail.koreanName}/>
+        <meta name="description" content={cocktail.description}/>
+      </Head>
       <Carousel
         carouselList={[
           {
