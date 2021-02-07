@@ -229,7 +229,8 @@ const ResultBox = styled.div`
 
   .result-text {
     margin-top: 20px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+    line-height: 30px;
   }
 `;
 
@@ -274,12 +275,12 @@ function Result({ totalScore, setIsFinished, setCount, setScore, setQuiz }) {
     {
       id: "1",
       imgsrc: "result1.jpg",
-      text: "삐빅 술알못입니다",
+      text: "삐빅! 당신은 술알못입니다.\n더 공부하시구 도전하세요! 😝",
     },
     {
       id: "3",
       imgsrc: "result3.gif",
-      text: "삐빅 술잘알입니다",
+      text: "삐빅! 당신은 술잘알입니다!\n주변에 마음껏 자랑해주세요 😎",
     },
   ];
 
@@ -290,6 +291,8 @@ function Result({ totalScore, setIsFinished, setCount, setScore, setQuiz }) {
   } else if (totalScore >= 50) {
     result = resultData[1];
   }
+
+  let text= result.text;
 
   const shuffleArray = array => {
     for (let i = 0; i < array.length; i++) {
@@ -305,7 +308,9 @@ function Result({ totalScore, setIsFinished, setCount, setScore, setQuiz }) {
         <h2 className="score-text">Score</h2>
         <div className="score">{totalScore}</div>
         <img className="result-img" src={result.imgsrc} alt="no images" />
-        <div className="result-text">{result.text}</div>
+        <div className="result-text">{text.split('\n').map((line) => {
+    return <div>{line}</div>
+  })}</div>
       </ResultBox>
       <ButtonDiv>
         <button
@@ -338,7 +343,9 @@ function Result({ totalScore, setIsFinished, setCount, setScore, setQuiz }) {
         <KakaoShareButton
           title="나의 술알못 테스트 결과는?"
           desc={result.text}
-          imgurl="http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg"
+          imgurl="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F1aa7d3e6-f7d3-41a7-b228-85427d9ad3f3%2FUntitled.png?table=block&id=1bd379e5-5411-4c91-81bc-8f9c6d2a8828&spaceId=14cff50a-9d15-48cd-a262-2724a8ab38ba&width=3060&userId=505f5c27-9d71-4cf4-8174-1ef8968c448d&cache=v2"
+          content="칵테일 퀴즈"
+          contentUrl="quiz"
         ></KakaoShareButton>
       </KakaoLink>
       {commentOn ? <Comments page="quiz" /> : ""}

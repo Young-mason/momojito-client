@@ -336,9 +336,11 @@ export default function WorldCup() {
             <KakaoLink>
               <p>카카오톡으로 공유하기</p>
               <KakaoShareButton
-                title="나의 술알못 테스트 결과는?"
-                desc={result.text}
-                imgurl="http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg"
+                title="칵테일 이상형 월드컵 결과"
+                desc={`당신의 최애 칵테일은 ${db[result].koreanName} 입니다`}
+                imgurl={`https://momojito.net/cocktails/${db[result].id}.png`}
+                content="칵테일 이상형 월드컵"
+                contentUrl="worldcup"
               ></KakaoShareButton>
             </KakaoLink>
             {commentOn ? <Comments page="worldcup" className="comments" /> : ""}

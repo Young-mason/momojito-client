@@ -12,14 +12,13 @@ const KakaoButton = styled.button`
   }
 `;
 
-function KakaoShareButton({ title, desc, imgurl, link }) {
+function KakaoShareButton({ title, desc, imgurl, link, content, contentUrl }) {
   //추후 process.env로 관리하기
   const kakaoKey = "75d977bf235fda941972e4be5835408a";
-
   useEffect(() => {
     createKakaoButton();
   }, []);
-
+  
   const createKakaoButton = () => {
     const redirectUrl = link || window.location.href;
     // kakao sdk script이 정상적으로 불러와졌으면 window.Kakao로 접근이 가능합니다
@@ -43,6 +42,20 @@ function KakaoShareButton({ title, desc, imgurl, link }) {
             webUrl: redirectUrl,
           },
         },
+        buttons: [
+          {
+            title: '모모히또로 이동',
+            link: {
+              mobileWebUrl: 'https://momojito.net',
+            },
+          },
+          {
+            title: `${content}`,
+            link: {
+              mobileWebUrl: `https://momojito.net/${contentUrl}`,
+            },
+          },
+        ]
       });
     }
   };
